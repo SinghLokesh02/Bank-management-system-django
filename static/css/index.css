@@ -1,0 +1,28 @@
+/* Navbar Styling */
+img{
+    height: 300px;
+    width: 300px;
+}
+#nav{
+    background-color:#212529;
+}
+#ul{
+    display: flex;
+    justify-content: end;
+}
+.li{
+    list-style: none;
+    padding: 20px;
+}
+.a:hover{
+     background-color: black;
+     border-radius: 15px;
+}
+.a{
+    text-decoration: none;
+    color: white;
+    padding: 10px;
+    font-size: larger;
+    font-weight: bolder;
+}
+

@@ -1,0 +1,71 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="{% static "img/icons8-bank-48.png" %}" type="image/xl-icon" />
+    <title>Search User</title>
+    <style>
+         form{
+            display: flex;
+            flex-direction: column;
+            margin-bottom: 5vh;
+        }
+        input[type="submit"]{
+            margin-top: 3vh;
+        }
+        label{
+        margin-top: 2vh;
+        font-weight: bold;
+    }
+    #ul_this{
+        background-color: rgb(243, 243, 234);
+        border-radius: 10px;
+        margin: 2vh;
+        box-shadow: 5px 4px 5px lime;
+    }
+    #ul_this:hover{
+        background-color: #e0e0e0;
+    }
+    .search-list-items{
+        list-style: none;
+        padding: 9px;
+        font-weight: bold;
+    }
+    </style>
+</head>
+<body>
+    
+    <!-- Including Navbar -->
+    {% include "navbar.html" %}
+
+    <h1 class="text-center my-5">This is the Search Page</h1>
+    <div class="container">
+    <form action="{% url "search" %}" method="POST">
+        {% csrf_token %}
+        <label for="name">Name</label><input type="text" name="name" id="name" required>
+        <label for="account_number">Account Number</label><input type="number" name="account_no" id="account_number" required>
+        <input type="submit" value="Search Data" class="btn btn-warning">
+    </form>
+</div>
+
+<div class="container">
+    {% for data in user %}
+      <ul id="ul_this">
+        <li class="search-list-items">Name : {{data.name}}</li>
+        <li class="search-list-items">Account Number : {{data.account_no}}</li>
+        <li class="search-list-items">Email : {{data.email}}</li>
+        <li class="search-list-items">Balance : {{data.balance}}</li>
+        <li class="search-list-items">Account type : {{data.account_type}}</li>
+      </ul>
+    {% endfor %}
+</div>
+
+
+    <!-- Bootstrap Js -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+</body>
+</html>
